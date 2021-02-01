@@ -34,39 +34,52 @@ public class SEController : MonoBehaviour
 
     AudioSource SoundEffecter;
 
+    GameObject Player;
+    Anim_Con script;
+    int run;
     void Start()
     { 
         SoundEffecter = gameObject.AddComponent<AudioSource>();
- 
+        Player = GameObject.Find("Player");
+        script = Player.GetComponent<Anim_Con>();
     }
     void FixedUpdate()
     {
         a = Anm.GetBool("Runs");
         b = Anm.GetBool("Jump");
         c = Anm.GetBool("Sliding");
+
+       run = script.Run + 1;
     }
     void Update()
     {
-        if (b)
-        {
-            //SoundEffecter.PlayOneShot(Jump_SE);
-        }
-        if (Anm.GetCurrentAnimatorStateInfo(0).IsName("Esc_Slide_All"))
-            SoundEffecter.PlayOneShot(Slide_SE);
 
-        if (paramClass.playerSpeed !=0 && !SoundEffecter.isPlaying)
+        if (paramClass.playerSpeed != 0 && paramClass.isGround && !SoundEffecter.isPlaying)
         {
             SoundEffecter.clip = Run_SE;
             SoundEffecter.PlayScheduled(delay);
-            SoundEffecter.SetScheduledEndTime(AudioSettings.dspTime + Run_SE.length /4 +delay);
+            SoundEffecter.SetScheduledEndTime(AudioSettings.dspTime + Run_SE.length / run + delay);
         }
+        else if (b)
+        {
+            SoundEffecter.clip = Jump_SE;
+            SoundEffecter.PlayScheduled(delay);
+            SoundEffecter.SetScheduledEndTime(AudioSettings.dspTime + Jump_SE.length + delay);
+        }
+        else if (c)
+        {
+            SoundEffecter.clip = Slide_SE;
+            SoundEffecter.PlayScheduled(delay);
+            SoundEffecter.SetScheduledEndTime(AudioSettings.dspTime + Slide_SE.length + delay);
+        }
+
         SoundEffecter.mute = mute;
         SoundEffecter.volume = vol;
     }
 
     public void DamageSE()
     {
-        SoundEffecter.PlayOneShot(Run_SE);
+        SoundEffecter.PlayOneShot(Dmg_SE);
         SoundEffecter.mute = mute;
         SoundEffecter.volume = vol;
     }

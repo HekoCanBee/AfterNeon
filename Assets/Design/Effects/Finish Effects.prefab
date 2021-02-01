@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1614041289477779147}
   - component: {fileID: 1614041289477779146}
   - component: {fileID: 1614041289477779145}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Finish Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}

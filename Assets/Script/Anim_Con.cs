@@ -9,7 +9,7 @@ public class Anim_Con : MonoBehaviour
         paramClass = PlayerParamClass.GetInstance();
 
     Animator Anm;
-    int Run;
+    public int Run;
     private int Jump_S;
     [SerializeField, Header("アニメーション変更速度"), Tooltip("0:idle 1:walk 2:jog 3:dash 4:boost")]
     private float[]

@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
 {
     PlayerParamClass
         paramClass = PlayerParamClass.GetInstance();
+    ScoreClass
+       scoreClass = ScoreClass.GetInstance();
 
     //加速減速
     [SerializeField, Header("加速値")]
@@ -78,6 +80,7 @@ public class PlayerMove : MonoBehaviour
         { 
             paramClass.SpeedFluctuation(accele);
             paramClass.isRun = false;
+            scoreClass.addBounus(ScoreClass.Bonus.RUN);
         }
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || paramClass.statusLR == PlayerParamClass.LRTrigger.RIGHT)
             paramClass.SpeedFluctuation_LR(accele_LR / 60f);
@@ -90,6 +93,7 @@ public class PlayerMove : MonoBehaviour
             paramClass.SpeedFluctuation_Jump(jumpForce);
             SetDecele(1);
             Debug.Log("jump");
+            scoreClass.addBounus(ScoreClass.Bonus.JUMP);
         }
         else if(!paramClass.isGround)
             paramClass.SpeedFluctuation_Jump(0);
@@ -97,9 +101,12 @@ public class PlayerMove : MonoBehaviour
             SetDecele(0);
         if (Input.GetKey(KeyCode.LeftControl) || paramClass.isSliding)
         {
+            if (playerCol.height == pColHeight)
+                scoreClass.addBounus(ScoreClass.Bonus.SLIDING);
             playerCol.height = pColHeight / 2f;
             playerCol.center = new Vector3(0, pColCenter.y-(pColHeight/2 - playerCol.height/2), 0);
             SetDecele(1);
+
         }
         else if (playerCol.height != pColHeight)
         {

@@ -10,6 +10,9 @@ public class DebugRunnner : MonoBehaviour
     paramClass = PlayerParamClass.GetInstance();
 
     [SerializeField]
+    string title = "NewScene";
+
+    [SerializeField]
     Vector3 ContinuePos;
     public bool AutoRun;
 
@@ -32,6 +35,8 @@ public class DebugRunnner : MonoBehaviour
             Continue();
         if (Input.GetKey(KeyCode.R) && Input.GetKey(KeyCode.LeftControl))
             LoadReset();
+        if (Input.GetKey(KeyCode.Escape))
+            TitleBack();
     }
 
     private void Continue()
@@ -48,7 +53,11 @@ public class DebugRunnner : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    private void TitleBack()
+    {
+        paramClass.InitParam();
+        SceneManager.LoadScene(title);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ContinuePoint"))

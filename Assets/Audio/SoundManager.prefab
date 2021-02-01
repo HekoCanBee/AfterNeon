@@ -63,13 +63,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35a1eb7d29567443ba96dba88b12cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vol: 0.1
+  vol: 0.5
   mute: 0
   delay: 0.1
-  Jump_SE: {fileID: 8300000, guid: 9ec11f317ad39de4d8561bdb06194ebe, type: 3}
-  Slide_SE: {fileID: 8300000, guid: 9ec11f317ad39de4d8561bdb06194ebe, type: 3}
-  Run_SE: {fileID: 8300000, guid: a77e452f141af884f858c1f725bebc34, type: 3}
-  Dmg_SE: {fileID: 8300000, guid: d6fef5d55af32e34c93317234bf5a316, type: 3}
+  Jump_SE: {fileID: 8300000, guid: ffa3af50ee094cd5b0bbf9a234efbfa4, type: 3}
+  Slide_SE: {fileID: 8300000, guid: aec93a21369b4e919d4544db2922dbce, type: 3}
+  Run_SE: {fileID: 8300000, guid: ee1d0b7240da2c4468fd4a01db225aa4, type: 3}
+  Dmg_SE: {fileID: 8300000, guid: c23f2273a2cb4dde9b8124c83702e99e, type: 3}
+  Anm: {fileID: 0}
 --- !u!114 &6792966314817056245
 MonoBehaviour:
   m_ObjectHideFlags: 0

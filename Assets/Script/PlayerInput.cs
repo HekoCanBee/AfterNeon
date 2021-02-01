@@ -44,7 +44,7 @@ public class PlayerInput : MonoBehaviour
         { JointType.EyeLeft, JointType.Head },
         { JointType.EarLeft, JointType.Head },
         { JointType.EyeRight, JointType.Head },
-        { JointType.EarRight, JointType.Head },
+        { JointType.EarRight, JointType.Head }
     };
 
     private KinectSensor sensor;

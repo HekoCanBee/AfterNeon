@@ -8,6 +8,8 @@ public class GoalSystem : MonoBehaviour
 
     PlayerParamClass
         paramClass = PlayerParamClass.GetInstance();
+    ScoreClass
+        scoreClass = ScoreClass.GetInstance();
 
     [Range(0.0f, 1.0f)]
     public float
@@ -27,6 +29,8 @@ public class GoalSystem : MonoBehaviour
     public GameObject Time;
     public GameObject BGM;
 
+    public ParticleSystem Goal_Effect;
+
     private void OnTriggerEnter(Collider other)
     {
         SE_OneShot SE_Con = BGM.GetComponent<SE_OneShot>();
@@ -40,13 +44,13 @@ public class GoalSystem : MonoBehaviour
 
             //クリアしたよ表示
             ClearLogo.gameObject.SetActive(true);
+            Goal_Effect.Play();
 
             //しばらくしたらリザルトへ
             Invoke("ChangeScrene", 6f);
 
             //今回のタイムをセーブしとく
-            PlayerPrefs.SetFloat("NewScore", StateUI.stageTime);
-            PlayerPrefs.Save();
+            scoreClass.SetScore(StateUI.stageTime);
 
             Players.GetComponent<PlayerMove>().enabled = false;
             Time.gameObject.SetActive(false);
@@ -55,6 +59,7 @@ public class GoalSystem : MonoBehaviour
 
     void ChangeScrene()
     {
+        
         SceneManager.LoadScene(nextScene);
     }
 

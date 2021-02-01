@@ -7,6 +7,8 @@ public class HitChecker : MonoBehaviour
 {
     PlayerParamClass
         paramClass = PlayerParamClass.GetInstance();
+    ScoreClass
+        scoreClass = ScoreClass.GetInstance();
 
     [SerializeField]
     GameObject dmgEfPrefub;
@@ -92,11 +94,13 @@ public class HitChecker : MonoBehaviour
         kickVec = hitObj.transform.position - this.transform.position;
         kickVec.x += Random.Range(-kickmaxValX, kickmaxValX);
         kickVec.y += Random.Range(0.0f, kickmaxValY);
+        kickVec.z += paramClass.playerSpeed;
         kickVec = kickVec.normalized;
         hitRB.AddForce(kickVec * paramClass.playerSpeed, ForceMode.VelocityChange);
 
-        hitRB.AddTorque(Vector3.forward * paramClass.playerSpeed, ForceMode.VelocityChange);
+        hitRB.AddTorque(Vector3.forward * Random.Range(-1, 1) * paramClass.playerSpeed, ForceMode.VelocityChange);
 
         Destroy(hitObj.gameObject, desTime);
+        scoreClass.HitCount();
     }
 }

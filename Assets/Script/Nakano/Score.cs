@@ -35,7 +35,7 @@ public class Score : MonoBehaviour
         
         for(int i = 0; i < 5; i++)
         {
-            if (Change && (YourScore <= RankScore[i] || RankScore[i] == 0))
+            if (Change && (YourScore >= RankScore[i] || RankScore[i] == 0))
             {
                 for (int j = 4; j > i; j--)
                 {

@@ -5,7 +5,9 @@ using UnityEngine;
 public class WallRunS : MonoBehaviour
 {
     PlayerParamClass
-    paramClass = PlayerParamClass.GetInstance();
+        paramClass = PlayerParamClass.GetInstance();
+    ScoreClass
+        scoreClass = ScoreClass.GetInstance();
 
     [SerializeField, Header("壁走りに最低限必要な速度")]
     private float wallRunSpeed = 10.0f;
@@ -16,6 +18,7 @@ public class WallRunS : MonoBehaviour
         if (other.CompareTag("Player") && paramClass.playerSpeed >= wallRunSpeed)
         {
             paramClass.isWallRun = true;
+            scoreClass.addBounus(ScoreClass.Bonus.WALLRUN);
             if (endPos != null)
                 paramClass.SetWallRun(this.transform.position, endPos.position);
         }

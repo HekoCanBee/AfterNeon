@@ -17,7 +17,7 @@ public class Damage_particle : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            Debug.Log("Damage!");
+            //Debug.Log("Damage!");
             Dmg_EF.Play();
             Dmg_EF2.Play();
         }

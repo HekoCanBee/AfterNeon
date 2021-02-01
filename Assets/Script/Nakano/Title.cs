@@ -60,10 +60,11 @@ public class Title : MonoBehaviour
             //Invoke("Ca", 1.5f);
             Invoke("Scene", 1.5f);          
         }
-        else if (isGround || isJump)
+        else if (Anime.GetBool("Jump"))
         {
-            //Anime.SetBool("Jump", false);
-            //isJump = false;
+            Anime.SetBool("Run", false);
+
+            
         }
         img.color = new Color(img.color.r,
                               img.color.g,
@@ -73,6 +74,10 @@ public class Title : MonoBehaviour
         {
             SceneManager.LoadScene(nextScene);
         }
+
+        if (Input.GetKey(KeyCode.Escape))
+            Application.Quit();
+
     }
 
     private void OnCollisionStay(Collision collision)
